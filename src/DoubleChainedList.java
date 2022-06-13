@@ -28,33 +28,6 @@ public class DoubleChainedList<T> {
         }
 
     }
-    public void add(int pos, T value) {
-        if (!this.isFull()) {
-            pos = Objects.checkIndex(pos, this.size);
-
-            if (pos == this.size) {
-                this.add(value);
-            } else {
-                Node<T> node = new Node(value);
-                Node<T> next = this.getNode(pos);
-                Node<T> anterior = next.getBack();
-
-                if (anterior == null) {
-                    node.setFront(next);
-                    next.setBack(node);
-                    this.down = node;
-                } else {
-                    node.setBack(anterior);
-                    node.setFront(next);
-
-                    anterior.setFront(node);
-                    next.setBack(node);
-                }
-
-                this.size++;
-            }
-        }
-    }
     public Node<T> getNode(int pos) throws IllegalArgumentException {
         if (!(pos < this.size)) {
             throw new IllegalArgumentException("INVALID Command, try again");
